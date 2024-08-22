@@ -1,0 +1,30 @@
+<?php
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    $cmd = $_POST['cmd'];
+    
+    // Bộ lọc cơ bản để chống lại command injection
+    if (preg_match('/[;&|`]/', $cmd)) {
+        echo "Command Injection Detected!";
+    } else {
+        // Thực hiện lệnh
+        $output = shell_exec($cmd);
+        echo "<pre>$output</pre>";
+    }
+}
+?>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Command Injection Demo</title>
+</head>
+<body>
+    <h1>Enter a command:</h1>
+    <form method="post">
+        <input type="text" name="cmd" />
+        <input type="submit" value="Execute" />
+    </form>
+</body>
+</html>
