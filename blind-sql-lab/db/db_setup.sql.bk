@@ -1,0 +1,25 @@
+CREATE TABLE users (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    username VARCHAR(50) NOT NULL,
+    password VARCHAR(50) NOT NULL
+);
+
+CREATE TABLE employees (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    name VARCHAR(100) NOT NULL,
+    position VARCHAR(50) NOT NULL,
+    salary DECIMAL(10, 2) NOT NULL
+);
+
+INSERT INTO users (username, password) VALUES ('admin', 'admin');
+INSERT INTO employees (name, position, salary) VALUES
+('John Doe', 'Manager', 60000.00),
+('Jane Smith', 'Developer', 55000.00),
+('Robert Johnson', 'Designer', 50000.00),
+('Emily Davis', 'Developer', 53000.00),
+('Michael Brown', 'Tester', 48000.00),
+('Linda Wilson', 'Manager', 62000.00),
+('William Taylor', 'Developer', 56000.00),
+('Elizabeth Anderson', 'Designer', 51000.00),
+('James Thomas', 'Tester', 49000.00),
+('Patricia Martinez', 'Developer', 54000.00);
