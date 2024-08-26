@@ -1,0 +1,120 @@
+/* upload-style.css */
+
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #f0f2f5; /* Thay đổi màu nền để tạo cảm giác mềm mại hơn */
+    color: #333;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+}
+
+.container {
+    background-color: #ffffff;
+    padding: 25px; /* Thêm khoảng cách xung quanh nội dung */
+    border-radius: 10px; /* Bo góc mềm mại hơn */
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15); /* Đổ bóng mềm mại hơn */
+    width: 100%;
+    max-width: 450px; /* Tăng kích thước tối đa của container */
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.container:hover {
+    transform: scale(1.03); /* Tăng hiệu ứng phóng to một chút */
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2); /* Đổ bóng mạnh hơn khi hover */
+}
+
+h1 {
+    font-size: 24px; /* Giảm kích thước chữ một chút để phù hợp hơn */
+    margin-bottom: 20px;
+    color: #007bff;
+    text-align: center;
+    font-weight: 600; /* Tăng độ đậm để tiêu đề nổi bật hơn */
+}
+
+label {
+    display: block;
+    margin-bottom: 12px; /* Thay đổi khoảng cách dưới label */
+    font-weight: 600; /* Tăng độ đậm của font chữ */
+    color: #333; /* Thay đổi màu chữ cho label */
+}
+
+input[type="file"] {
+    width: 100%;
+    padding: 12px;
+    margin-bottom: 20px;
+    border: 1px solid #ddd;
+    border-radius: 6px; /* Bo góc mềm mại hơn */
+    background-color: #f8f9fa; /* Thay đổi màu nền của input */
+    cursor: pointer;
+    font-size: 14px; /* Thay đổi kích thước chữ trong input */
+}
+
+button {
+    width: 100%;
+    padding: 12px;
+    background-color: #007bff;
+    color: #ffffff;
+    border: none;
+    border-radius: 6px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+button:hover {
+    background-color: #0056b3;
+    transform: scale(1.02); /* Tăng hiệu ứng phóng to khi hover */
+}
+
+.success {
+    color: #28a745;
+    font-weight: 600;
+    margin-top: 10px;
+    text-align: center;
+    word-wrap: break-word; /* Đảm bảo văn bản sẽ ngắt dòng khi cần */
+    word-break: break-word; /* Ngắt dòng từ điểm không phải khoảng trắng */
+}
+
+.error {
+    color: #dc3545;
+    font-weight: 600;
+    margin-top: 10px;
+    text-align: center;
+    word-wrap: break-word; /* Đảm bảo văn bản sẽ ngắt dòng khi cần */
+    word-break: break-word; /* Ngắt dòng từ điểm không phải khoảng trắng */
+
+}
+
+.logout-button, .check-source-button {
+    display: block;
+    text-align: center;
+    margin-top: 20px;
+    padding: 12px;
+    border-radius: 6px;
+    color: #ffffff;
+    text-decoration: none;
+    font-size: 16px;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.logout-button {
+    background-color: #dc3545;
+}
+
+.logout-button:hover {
+    background-color: #c82333;
+    transform: scale(1.02); /* Tăng hiệu ứng phóng to khi hover */
+}
+
+.check-source-button {
+    background-color: #17a2b8;
+}
+
+.check-source-button:hover {
+    background-color: #138496;
+    transform: scale(1.02); /* Tăng hiệu ứng phóng to khi hover */
+}
+
