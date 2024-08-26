@@ -1,0 +1,80 @@
+/* styles.css */
+
+/* General Styles */
+body {
+    font-family: 'Poppins', sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f8f9fa;
+}
+
+.site-header {
+    background-color: #343a40;
+    color: #ffffff;
+    padding: 10px 0;
+}
+
+.site-header .site-header-text {
+    font-size: 24px;
+    color: #ffffff;
+    text-decoration: none;
+}
+
+.site-header .social-icon a {
+    color: #ffffff;
+    margin-left: 10px;
+}
+
+.btn-primary {
+    background-color: #007bff;
+    border-color: #007bff;
+}
+
+.btn-menu {
+    border: none;
+    background: transparent;
+    color: #ffffff;
+}
+
+/* Hero Section */
+.hero-section {
+    position: relative;
+    background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('videos/video.mp4') no-repeat center center;
+    background-size: cover;
+    height: 100vh;
+    color: #ffffff;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.hero-section .countdown {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+.countdown-item {
+    margin: 0 15px;
+    text-align: center;
+}
+
+.countdown-title {
+    font-size: 48px;
+    font-weight: 700;
+}
+
+.countdown-text {
+    font-size: 16px;
+}
+
+.custom-form {
+    max-width: 500px;
+    margin: 0 auto;
+}
+
+.modal-title {
+    font-size: 24px;
+    font-weight: 700;
+}
