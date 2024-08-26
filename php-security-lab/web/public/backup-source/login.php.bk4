@@ -25,9 +25,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         }
     } elseif (isset($_POST['view_code'])) {
         // Xử lý xem mã nguồn
-        $code = htmlspecialchars(file_get_contents(__FILE__));
-        $message = "<pre class='code-view'><code>$code</code></pre>";
-        $back_button = "<form method='post' action=''><button type='submit' name='back' class='back-button'>Trở Lại</button></form>";
+        $message = "<pre><code>" . htmlspecialchars(file_get_contents(__FILE__)) . "</code></pre>";
     } elseif (isset($_POST['view_user'])) {
         // Xử lý xem người dùng đã đăng nhập
         if (isset($_SESSION['user_id'])) {
@@ -54,10 +52,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         } else {
             $message = "<p class='error'>Bạn không có quyền xem danh sách người dùng.</p>";
         }
-    } elseif (isset($_POST['back'])) {
-        // Xử lý quay lại trang trước
-        header("Location: " . $_SERVER['PHP_SELF']);
-        exit();
     }
 }
 ?>
@@ -95,7 +89,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         <!-- Hiển thị thông báo -->
         <div class="message-container">
             <?php echo $message; ?>
-            <?php echo $back_button ?? ''; ?>
         </div>
     </div>
 </body>

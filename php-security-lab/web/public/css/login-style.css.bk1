@@ -86,7 +86,7 @@ button:hover {
     text-align: center;
 }
 
-.view-code-button, .view-user-button, .view-all-users-button, .back-button {
+.view-code-button, .view-user-button, .view-all-users-button {
     display: block;
     width: calc(100% - 20px);
     margin: 10px auto;
@@ -123,14 +123,6 @@ button:hover {
     background-color: #218838;
 }
 
-.back-button {
-    background-color: #6c757d; /* Màu nền của nút Trở Lại */
-}
-
-.back-button:hover {
-    background-color: #5a6268;
-}
-
 .message-container {
     margin-top: 20px;
     text-align: center;
@@ -142,6 +134,13 @@ button:hover {
     border-radius: 4px;
     padding: 20px;
     overflow-x: auto; /* Thêm cuộn ngang nếu mã quá dài */
-    white-space: pre; /* Giữ định dạng khoảng trắng và xuống dòng */
+    white-space: pre; /* Giữ định dạng khoảng trắng và ngắt dòng */
+}
+
+.code-view code {
+    display: block;
+    color: #333;
+    font-family: monospace;
+    font-size: 14px;
 }
 
