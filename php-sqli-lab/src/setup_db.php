@@ -29,13 +29,34 @@ if ($conn->query($sql) === TRUE) {
 $sql = "INSERT INTO users (username, email) VALUES 
     ('alice', 'alice@example.com'),
     ('bob', 'bob@example.com'),
-    ('charlie', 'charlie@example.com')";
+    ('charlie', 'charlie@example.com'),
+    ('david', 'david@example.com'),
+    ('eve', 'eve@example.com'),
+    ('frank', 'frank@example.com'),
+    ('grace', 'grace@example.com'),
+    ('heidi', 'heidi@example.com'),
+    ('ivan', 'ivan@example.com'),
+    ('judy', 'judy@example.com'),
+    ('karl', 'karl@example.com'),
+    ('lisa', 'lisa@example.com'),
+    ('mike', 'mike@example.com'),
+    ('nina', 'nina@example.com'),
+    ('olivia', 'olivia@example.com'),
+    ('paul', 'paul@example.com'),
+    ('quinn', 'quinn@example.com'),
+    ('rachel', 'rachel@example.com'),
+    ('sam', 'sam@example.com'),
+    ('tina', 'tina@example.com'),
+    ('ursula', 'ursula@example.com'),
+    ('victor', 'victor@example.com'),
+    ('wendy', 'wendy@example.com'),
+    ('xander', 'xander@example.com'),
+    ('yara', 'yara@example.com'),
+    ('zach', 'zach@example.com')";
 
 if ($conn->query($sql) === TRUE) {
     echo "Dữ liệu mẫu đã được chèn thành công.";
 } else {
     echo "Lỗi chèn dữ liệu: " . $conn->error;
 }
-
-$conn->close();
 
