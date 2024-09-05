@@ -33,3 +33,25 @@ apt install nmap -y
 ```
 ![image](https://github.com/user-attachments/assets/f92d4a66-46ab-47a0-b69e-c6f4348b3f6d)
 
+Cài đặt Metasploit:
+```
+apt install metasploit-framework -y
+```
+![image](https://github.com/user-attachments/assets/073e83bf-5fb8-470a-8f0f-2c1aa32ba387)
+
+Cài đặt CrackMapExec:
+```
+apt install crackmapexec -y
+```
+# Bước 4: Lưu container (tuỳ chọn)
+Nếu bạn muốn lưu container Kali Linux đã cài đặt các công cụ để sử dụng sau, bạn có thể tạo một image từ container đang chạy:
+```
+docker commit kali_container my_kali_image
+```
+Lệnh này sẽ tạo một image mới có tên **my_kali_image** từ container hiện tại, và bạn có thể chạy lại image này sau mà không cần phải cài đặt lại các công cụ.
+# Bước 5: Chạy lại container Kali
+Để chạy lại container đã tạo, bạn có thể sử dụng lệnh:
+
+```
+docker start -ai kali_container
+```
