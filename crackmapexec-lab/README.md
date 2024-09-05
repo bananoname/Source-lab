@@ -57,6 +57,11 @@ docker ps
 ```
 crackmapexec smb 172.17.0.0/24 -u user_1 -p password_1
 ```
+![image](https://github.com/user-attachments/assets/87f3f977-c758-4690-84d1-853472d904c6)
+
+![image](https://github.com/user-attachments/assets/7791aa87-370b-4209-b356-d4e6fc55803f)
+
+
 # Bước 4: Xóa các container SMB khi không cần thiết
 - Sau khi hoàn tất kiểm tra, bạn có thể dọn dẹp và xóa tất cả các container đã tạo bằng lệnh sau:
 ```
