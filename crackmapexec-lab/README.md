@@ -35,7 +35,8 @@ Ghi chú:
 # Lưu script và chạy:
 1. Lưu file **create_smb_containers.sh.**
 2. Chạy lệnh sau để cấp quyền thực thi cho script:
-```chmod +x create_smb_containers.sh
+```
+chmod +x create_smb_containers.sh
 ```
 3. Thực thi script:
 
