@@ -1,0 +1,23 @@
+version: '3.8'
+
+services:
+  mysql:
+    image: mysql:5.7
+    container_name: mysql
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: my-secret-pw
+    volumes:
+      - ./init.sql:/docker-entrypoint-initdb.d/init.sql
+    ports:
+      - "3306:3306"
+
+  php:
+    build: .
+    container_name: php-app
+    depends_on:
+      - mysql
+    ports:
+      - "8080:80"
+    volumes:
+      - ./php:/var/www/html

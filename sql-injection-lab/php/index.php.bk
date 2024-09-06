@@ -1,0 +1,79 @@
+<?php
+$servername = "mysql";
+$username = "root";
+$password = "my-secret-pw";
+$dbname = "ctf_database";
+
+// Kết nối đến cơ sở dữ liệu
+$conn = new mysqli($servername, $username, $password, $dbname);
+
+// Kiểm tra kết nối
+if ($conn->connect_error) {
+    die("Connection failed: " . $conn->connect_error);
+}
+
+// Nhận input từ người dùng
+$search = isset($_GET['search']) ? $_GET['search'] : '';
+
+// Nếu người dùng nhập từ khóa tìm kiếm
+if ($search !== '') {
+    // Kiểm tra nếu chuỗi nhập có các ký tự thường thấy trong SQL Injection
+    if (preg_match("/('|--|;|=|\*|\bor\b|\band\b|\bunion\b)/i", $search)) {
+        // Trường hợp SQL Injection "1'"
+        if (preg_match("/1'/", $search)) {
+            echo "<h3>Syntax Error Detected!</h3>";
+        }
+        // Trường hợp SQL Injection UNION để truy vấn toàn bộ dữ liệu
+        elseif (preg_match("/union/i", $search)) {
+            echo "<h3>SQL Injection Attempt Detected! Showing specific flag:</h3>";
+            // Giả lập trả về flag đầu tiên khi người dùng thực hiện SQL Injection phức tạp
+            $sql = "SELECT * FROM ctf_flags WHERE id = 1";
+            $result = $conn->query($sql);
+            if ($result->num_rows > 0) {
+                $row = $result->fetch_assoc();
+                echo "ID: " . $row["id"]. " - Flag Code: " . $row["flag_code"]. " - Status: " . $row["status"]. "<br>";
+            }
+        } else {
+            // Các trường hợp SQL Injection khác hiển thị tất cả dữ liệu
+            echo "<h3>Possible SQL Injection detected! Showing all flags:</h3>";
+            $sql = "SELECT * FROM ctf_flags";
+            $result = $conn->query($sql);
+
+            if ($result->num_rows > 0) {
+                while($row = $result->fetch_assoc()) {
+                    echo "ID: " . $row["id"]. " - Flag Code: " . $row["flag_code"]. " - Status: " . $row["status"]. "<br>";
+                }
+            }
+        }
+    } else {
+        // Truy vấn an toàn nếu không có dấu hiệu SQL Injection
+        $stmt = $conn->prepare("SELECT * FROM ctf_flags WHERE flag_code LIKE ?");
+        $search_term = "%$search%";
+        $stmt->bind_param("s", $search_term);
+        $stmt->execute();
+        $result = $stmt->get_result();
+
+        // Hiển thị kết quả tìm kiếm bình thường
+        if ($result->num_rows > 0) {
+            while ($row = $result->fetch_assoc()) {
+                echo "ID: " . $row["id"] . " - Flag Code: " . $row["flag_code"] . " - Status: " . $row["status"] . "<br>";
+            }
+        } else {
+            echo "No results found.";
+        }
+        $stmt->close();
+    }
+} else {
+    // Khi người dùng chưa nhập gì, chỉ hiển thị form mà không trả về kết quả
+    echo "Please enter a search term.";
+}
+
+$conn->close();
+?>
+
+<!-- Form tìm kiếm -->
+<form method="GET" action="">
+    <input type="text" name="search" placeholder="Enter flag code">
+    <input type="submit" value="Search">
+</form>
+

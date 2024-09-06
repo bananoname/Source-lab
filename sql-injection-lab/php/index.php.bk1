@@ -1,0 +1,63 @@
+<?php
+$servername = "mysql";
+$username = "root";
+$password = "my-secret-pw";
+$dbname = "ctf_database";
+
+// Kết nối đến cơ sở dữ liệu
+$conn = new mysqli($servername, $username, $password, $dbname);
+
+// Kiểm tra kết nối
+if ($conn->connect_error) {
+    die("Connection failed: " . $conn->connect_error);
+}
+
+// Nhận input từ người dùng
+$search = isset($_GET['search']) ? $_GET['search'] : '';
+
+// Nếu người dùng nhập một từ khóa tìm kiếm
+if ($search !== '') {
+    // Tạo câu lệnh SQL tìm kiếm không an toàn
+    $sql = "SELECT * FROM articles WHERE title LIKE '%$search%' OR content LIKE '%$search%' OR id = $search";
+
+    // Thực thi câu lệnh SQL
+    $result = $conn->query($sql);
+
+    // Kiểm tra lỗi SQL
+    if ($conn->error) {
+        echo "<h3>SQL Syntax Error Detected!</h3>";
+        echo "Error details: " . $conn->error;
+    } else {
+        // Hiển thị kết quả tìm kiếm bài viết
+        if ($result->num_rows > 0) {
+            while ($row = $result->fetch_assoc()) {
+                echo "ID: " . $row["id"] . " - Title: " . $row["title"] . " - Content: " . $row["content"] . "<br>";
+            }
+        } else {
+            echo "No articles found.";
+        }
+    }
+} else {
+    // Nếu không nhập gì, hiển thị toàn bộ các bài viết
+    echo "<h3>All Articles:</h3>";
+    $sql = "SELECT * FROM articles";
+    $result = $conn->query($sql);
+
+    if ($result->num_rows > 0) {
+        while ($row = $result->fetch_assoc()) {
+            echo "ID: " . $row["id"] . " - Title: " . $row["title"] . " - Content: " . $row["content"] . "<br>";
+        }
+    } else {
+        echo "No articles available.";
+    }
+}
+
+$conn->close();
+?>
+
+<!-- Form tìm kiếm -->
+<form method="GET" action="">
+    <input type="text" name="search" placeholder="Search articles">
+    <input type="submit" value="Search">
+</form>
+
