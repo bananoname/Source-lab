@@ -1,0 +1,99 @@
+-- Tạo cơ sở dữ liệu nếu chưa tồn tại
+CREATE DATABASE IF NOT EXISTS demo_login;
+USE demo_login;
+
+-- Tạo bảng users
+CREATE TABLE IF NOT EXISTS users (
+    id INT(6) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+    username VARCHAR(30) NOT NULL,
+    password VARCHAR(30) NOT NULL
+);
+
+-- Thêm dữ liệu mẫu vào bảng users
+INSERT INTO users (username, password) VALUES ('admin', 'admin123');
+INSERT INTO users (username, password) VALUES ('user', 'password');
+
+-- Tạo bảng departments
+CREATE TABLE IF NOT EXISTS departments (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    name VARCHAR(255) NOT NULL,
+    location VARCHAR(255) NOT NULL
+);
+
+-- Thêm dữ liệu mẫu vào bảng departments
+INSERT INTO departments (name, location) VALUES
+('HR', 'New York'),
+('IT', 'San Francisco'),
+('Sales', 'Chicago');
+
+-- Tạo bảng employees
+CREATE TABLE IF NOT EXISTS employees (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    first_name VARCHAR(255) NOT NULL,
+    last_name VARCHAR(255) NOT NULL,
+    email VARCHAR(255) UNIQUE NOT NULL,
+    phone VARCHAR(20),
+    hire_date DATE NOT NULL,
+    department_id INT,
+    FOREIGN KEY (department_id) REFERENCES departments(id)
+);
+
+-- Thêm dữ liệu mẫu vào bảng employees
+INSERT INTO employees (first_name, last_name, email, phone, hire_date, department_id) VALUES
+('John', 'Doe', 'john.doe@example.com', '555-1234', '2023-01-15', 1),
+('Jane', 'Smith', 'jane.smith@example.com', '555-5678', '2023-02-20', 2),
+('Alice', 'Johnson', 'alice.johnson@example.com', '555-8765', '2023-03-10', 3),
+('Bob', 'Williams', 'bob.williams@example.com', '555-4321', '2023-04-25', 2);
+
+-- Tạo bảng projects
+CREATE TABLE IF NOT EXISTS projects (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    name VARCHAR(255) NOT NULL,
+    start_date DATE NOT NULL,
+    end_date DATE,
+    budget DECIMAL(10, 2),
+    department_id INT,
+    FOREIGN KEY (department_id) REFERENCES departments(id)
+);
+
+-- Thêm dữ liệu mẫu vào bảng projects
+INSERT INTO projects (name, start_date, end_date, budget, department_id) VALUES
+('Project Alpha', '2024-01-01', '2024-06-30', 50000.00, 2),
+('Project Beta', '2024-03-01', NULL, 75000.00, 1),
+('Project Gamma', '2024-05-15', '2024-12-31', 100000.00, 3);
+
+-- Tạo bảng salaries
+CREATE TABLE IF NOT EXISTS salaries (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    employee_id INT,
+    amount DECIMAL(10, 2) NOT NULL,
+    effective_date DATE NOT NULL,
+    FOREIGN KEY (employee_id) REFERENCES employees(id)
+);
+
+-- Thêm dữ liệu mẫu vào bảng salaries
+INSERT INTO salaries (employee_id, amount, effective_date) VALUES
+(1, 60000.00, '2024-01-01'),
+(2, 70000.00, '2024-01-01'),
+(3, 65000.00, '2024-03-01'),
+(4, 72000.00, '2024-03-01');
+
+-- Tạo bảng tasks
+CREATE TABLE IF NOT EXISTS tasks (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    name VARCHAR(255) NOT NULL,
+    description TEXT,
+    due_date DATE NOT NULL,
+    status ENUM('Pending', 'In Progress', 'Completed') NOT NULL,
+    employee_id INT,
+    project_id INT,
+    FOREIGN KEY (employee_id) REFERENCES employees(id),
+    FOREIGN KEY (project_id) REFERENCES projects(id)
+);
+
+-- Thêm dữ liệu mẫu vào bảng tasks
+INSERT INTO tasks (name, description, due_date, status, employee_id, project_id) VALUES
+('Design New Feature', 'Create designs for the new feature in Project Alpha.', '2024-02-15', 'In Progress', 2, 1),
+('Implement Backend', 'Develop the backend for Project Beta.', '2024-04-01', 'Pending', 1, 2),
+('Write Documentation', 'Prepare user documentation for Project Gamma.', '2024-07-30', 'Pending', 3, 3),
+('QA Testing', 'Perform QA testing for Project Alpha.', '2024-05-15', 'Completed', 4, 1);
